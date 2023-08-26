@@ -2,11 +2,19 @@ package org.example;
 
 public class DaoFactory {
     public UserDao userDao() {
-        ConnectionMaker connectionMaker = new DConnectionMaker();
-//        ConnectionMaker connectionMaker = new NConnectionMaker();
-
-        UserDao userDao = new UserDao(connectionMaker);
-
-        return userDao;
+        return new UserDao(new DConnectionMaker());
+//        return new UserDao(new NConnectionMaker());
     }
+
+    /*
+    public AccountDao accountDao() {
+        return new AccountDao(new DConnectionMaker());
+//        return new UserDao(new NConnectionMaker());
+    }
+
+    public MessageDao messageDao() {
+        return new MessageDao(new DConnectionMaker());
+//        return new UserDao(new NConnectionMaker());
+    }
+     */
 }
