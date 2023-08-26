@@ -6,15 +6,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public abstract class UserDao {
-    private SimpleConnectionMaker simpleConnectionMaker;
+public class UserDao {
+    private ConnectionMaker connectionMaker;
 
     public UserDao() {
-        simpleConnectionMaker = new SimpleConnectionMaker();
+        connectionMaker = new DConnectionMaker();
+//        connectionMaker = new NConnectionMaker();
     }
 
     public void add(User user) throws ClassNotFoundException, SQLException {
-        Connection c = simpleConnectionMaker.makeNewConnection();
+        Connection c = connectionMaker.makeNewConnection();
 
         PreparedStatement ps = c.prepareStatement(
                 "insert into users(id, name, password) values(?,?,?)");
@@ -30,7 +31,7 @@ public abstract class UserDao {
 
 
     public User get(String id) throws ClassNotFoundException, SQLException {
-        Connection c = simpleConnectionMaker.makeNewConnection();
+        Connection c = connectionMaker.makeNewConnection();
 
         PreparedStatement ps = c
                 .prepareStatement("select * from users where id = ?");
@@ -51,7 +52,7 @@ public abstract class UserDao {
     }
 
     public void delete(User user) throws ClassNotFoundException, SQLException {
-        Connection c = simpleConnectionMaker.makeNewConnection();
+        Connection c = connectionMaker.makeNewConnection();
 
         PreparedStatement ps = c.prepareStatement(
                 "delete from users where id = ?");
