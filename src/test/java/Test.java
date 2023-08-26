@@ -1,5 +1,3 @@
-import org.example.DUserDao;
-import org.example.NUserDao;
 import org.example.User;
 import org.example.UserDao;
 
