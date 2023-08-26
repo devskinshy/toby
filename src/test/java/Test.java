@@ -1,11 +1,13 @@
-import org.example.User;
-import org.example.UserDao;
+import org.example.*;
 
 import java.sql.SQLException;
 
 public class Test {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        UserDao dao = new UserDao();
+        ConnectionMaker connectionMaker = new DConnectionMaker();
+//        ConnectionMaker connectionMaker = new NConnectionMaker();
+
+        UserDao dao = new UserDao(connectionMaker);
 
         User originUser = new User();
         originUser.setId("test");
