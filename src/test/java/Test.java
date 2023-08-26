@@ -1,3 +1,5 @@
+import org.example.DUserDao;
+import org.example.NUserDao;
 import org.example.User;
 import org.example.UserDao;
 
@@ -6,6 +8,8 @@ import java.sql.SQLException;
 public class Test {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         UserDao dao = new UserDao();
+//        UserDao dao = new NUserDao();
+//        UserDao dao = new DUserDao();
 
         User originUser = new User();
         originUser.setId("test");
@@ -20,5 +24,7 @@ public class Test {
         System.out.println(dbUser.getName());
         System.out.println(dbUser.getPassword());
         System.out.println(dbUser.getId() + "조회 성공");
+
+        dao.delete(originUser);
     }
 }

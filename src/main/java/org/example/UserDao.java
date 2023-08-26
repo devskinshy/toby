@@ -6,14 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserDao {
-    private Connection getConnection() throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/toby?characterEncoding=UTF-8", "root",
-                "root");
-
-        return c;
-    }
+public abstract class UserDao {
+    public abstract Connection getConnection() throws ClassNotFoundException, SQLException;
 
     public void add(User user) throws ClassNotFoundException, SQLException {
         Connection c = getConnection();
@@ -50,5 +44,18 @@ public class UserDao {
         c.close();
 
         return user;
+    }
+
+    public void delete(User user) throws ClassNotFoundException, SQLException {
+        Connection c = getConnection();
+
+        PreparedStatement ps = c.prepareStatement(
+                "delete from users where id = ?");
+        ps.setString(1, user.getId());
+
+        ps.executeUpdate();
+
+        ps.close();
+        c.close();
     }
 }
