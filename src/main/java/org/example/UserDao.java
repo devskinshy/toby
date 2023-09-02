@@ -5,17 +5,23 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.sql.DataSource;
 
 public class UserDao {
-    private ConnectionMaker connectionMaker;
+//    private ConnectionMaker connectionMaker;
 
+//    public void setConnectionMaker(ConnectionMaker connectionMaker) {
+//        this.connectionMaker = connectionMaker;
+//    }
 
-    public void setConnectionMaker(ConnectionMaker connectionMaker) {
-        this.connectionMaker = connectionMaker;
+    private DataSource dataSource;
+
+    public void setDataSource(DataSource dataSource) {
+            this.dataSource = dataSource;
     }
 
     public void add(User user) throws ClassNotFoundException, SQLException {
-        Connection c = connectionMaker.makeNewConnection();
+        Connection c = dataSource.getConnection();
 
         PreparedStatement ps = c.prepareStatement(
                 "insert into users(id, name, password) values(?,?,?)");
@@ -31,7 +37,7 @@ public class UserDao {
 
 
     public User get(String id) throws ClassNotFoundException, SQLException {
-        Connection c = connectionMaker.makeNewConnection();
+        Connection c = dataSource.getConnection();
 
         PreparedStatement ps = c
                 .prepareStatement("select * from users where id = ?");
@@ -52,7 +58,7 @@ public class UserDao {
     }
 
     public void delete(User user) throws ClassNotFoundException, SQLException {
-        Connection c = connectionMaker.makeNewConnection();
+        Connection c = dataSource.getConnection();
 
         PreparedStatement ps = c.prepareStatement(
                 "delete from users where id = ?");
