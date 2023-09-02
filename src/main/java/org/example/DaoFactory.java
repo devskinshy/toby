@@ -7,8 +7,9 @@ import org.springframework.context.annotation.Configuration;
 public class DaoFactory {
     @Bean
     public ConnectionMaker connectionMaker() {
-        return new DConnectionMaker();
+//        return new DConnectionMaker();
 //        return new NConnectionMaker();
+        return new LocalDBConnectionMaker();
     }
 
     @Bean
