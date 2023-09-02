@@ -9,8 +9,9 @@ import java.sql.SQLException;
 public class UserDao {
     private ConnectionMaker connectionMaker;
 
-    public UserDao(ConnectionMaker connectionMaker) {
-        this.connectionMaker = connectionMaker;
+    public UserDao() {
+        DaoFactory daoFactory = new DaoFactory();
+        this.connectionMaker = daoFactory.connectionMaker();
     }
 
     public void add(User user) throws ClassNotFoundException, SQLException {
