@@ -5,12 +5,12 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class DaoFactory {
-    @Bean
-    public ConnectionMaker connectionMaker() {
+    @Bean // --------------------------------------------> <bean
+    public ConnectionMaker connectionMaker() { // ------->     id="connectionMaker"
 //        return new DConnectionMaker();
 //        return new NConnectionMaker();
 //        return new LocalDBConnectionMaker();
-        return new ProductionDBConnectionMaker();
+        return new ProductionDBConnectionMaker(); // ---->     class="org.example.ProductionDBConnectionMaker" />
     }
 
     @Bean
