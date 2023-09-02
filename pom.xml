@@ -23,13 +23,6 @@
             <version>8.0.33</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
-        <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>1.2</version>
-        </dependency>
-
         <!-- https://mvnrepository.com/artifact/cglib/cglib -->
         <dependency>
             <groupId>cglib</groupId>
@@ -64,6 +57,14 @@
             <artifactId>spring-expression</artifactId>
             <version>${org.springframework-version}</version>
         </dependency>
+
+        <!-- spring-jdbc -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+
     </dependencies>
 
 </project>
