@@ -8,13 +8,13 @@ import javax.sql.DataSource;
 
 @Configuration
 public class DaoFactory {
-//    @Bean // --------------------------------------------> <bean
-//    public ConnectionMaker connectionMaker() { // ------->     id="connectionMaker"
-////        return new DConnectionMaker();
-////        return new NConnectionMaker();
-////        return new LocalDBConnectionMaker();
-//        return new ProductionDBConnectionMaker(); // ---->     class="org.example.ProductionDBConnectionMaker" />
-//    }
+    @Bean // --------------------------------------------> <bean
+    public ConnectionMaker connectionMaker() { // ------->     id="connectionMaker"
+//        return new DConnectionMaker();
+//        return new NConnectionMaker();
+//        return new LocalDBConnectionMaker();
+        return new ProductionDBConnectionMaker(); // ---->     class="org.example.ProductionDBConnectionMaker" />
+    }
 
     @Bean
     public DataSource dataSource() {
@@ -30,7 +30,10 @@ public class DaoFactory {
 
     @Bean
     public UserDao userDao() {
-        return new UserDao(connectionMaker());
+        UserDao userDao = new UserDao();
+        userDao.setDataSource(dataSource());
+
+        return userDao;
     }
 
     /*
