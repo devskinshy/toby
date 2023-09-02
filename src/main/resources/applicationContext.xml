@@ -4,8 +4,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id="myDConnectionMaker" class="org.example.DConnectionMaker"/>
-    <bean id="myNConnectionMaker" class="org.example.NConnectionMaker"/>
+<!--    <bean id="myDConnectionMaker" class="org.example.DConnectionMaker"/>-->
+<!--    <bean id="myNConnectionMaker" class="org.example.NConnectionMaker"/>-->
     <bean id="myLocalDBConnectionMaker" class="org.example.LocalDBConnectionMaker"/>
     <bean id="myProductionDBConnectionMaker" class="org.example.ProductionDBConnectionMaker"/>
 
