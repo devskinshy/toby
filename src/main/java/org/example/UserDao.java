@@ -8,11 +8,10 @@ import java.sql.SQLException;
 
 public class UserDao {
     private ConnectionMaker connectionMaker;
-    private Connection c;
-    private User user;
 
-    public UserDao(ConnectionMaker connectionMaker) {
-        this.connectionMaker = connectionMaker;
+    public UserDao() {
+        connectionMaker = new DConnectionMaker();
+//        connectionMaker = new NConnectionMaker();
     }
 
     public void add(User user) throws ClassNotFoundException, SQLException {
@@ -32,7 +31,7 @@ public class UserDao {
 
 
     public User get(String id) throws ClassNotFoundException, SQLException {
-        this.c = connectionMaker.makeNewConnection();
+        Connection c = connectionMaker.makeNewConnection();
 
         PreparedStatement ps = c
                 .prepareStatement("select * from users where id = ?");
@@ -40,7 +39,7 @@ public class UserDao {
 
         ResultSet rs = ps.executeQuery();
         rs.next();
-        this.user = new User();
+        User user = new User();
         user.setId(rs.getString("id"));
         user.setName(rs.getString("name"));
         user.setPassword(rs.getString("password"));
